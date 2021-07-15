@@ -13,12 +13,13 @@
         <header class="headerContainer"><h1>HTML 5 input fields</h1></header>
         <div>
             <label for="text">text input type for name :</label>
-            <input tyype = "text" id="text" name="text">
+            <input type = "text" id="text" name="text">
             <error-output class="text-error" for="text"></error-output>
         </div>
         <div>
             <label for="pwd">Password input type:</label>
             <input type="password" id="pwd" name="pwd" required>
+            <error-output class="password-error" for = "password"></error-output>
         </div>
         <div>
             <label for="email">email input type:</label>
@@ -76,6 +77,22 @@
         salary.addEventListener('input',function(){
             output.textContent = salary.value;
         })
+
+        const password = document.querySelector('#pwd');
+        const passwordError = document.querySelector('.password-error')
+        let passRegex = RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$')
+        password.addEventListener('input',function(){
+            if(password.value.length==0){
+                passwordError.textContent=' ';
+            }
+            if(passRegex.test(password.value)){
+                passwordError.textContent = ' ';
+            }else{
+                passwordError.textContent = "Password is invalid";
+            }
+        })
+
+
     </script>
 </body>
 </html>
